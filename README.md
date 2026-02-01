@@ -77,3 +77,8 @@ With this clean Star Schema, organizations can now perform:
 ### DOCUMENTATION AND LINEAGE
 * **GENERATE DOCS**: Run `dbt docs generate` to compile the data dictionary and lineage graph.
 * **VIEW LINEAGE**: Access the dbt Cloud documentation tab to visually inspect the data flow from raw ingestion to the marts layer.
+
+## LINEAGE GRAPH
+
+<img width="1832" height="823" alt="Lineage Graph" src="https://github.com/user-attachments/assets/b97816e4-2fa9-44fd-932a-a7626139ee99" />
+
