@@ -1,0 +1,13 @@
+# dbt artifacts
+logs/
+target/
+dbt_packages/
+dbt_modules/
+
+# Security (Even if you don't have these locally, keep them here as a safety net)
+profiles.yml
+.env
+
+# Cloud IDE specific (if using VS Code based cloud editors)
+.vscode/
+.DS_Store

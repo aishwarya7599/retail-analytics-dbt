@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: retail_raw
+    database: RETAIL_ANALYTICS 
+    schema: RAW             
+    tables:
+      - name: SALES_DATA_2020 
+      - name: SALES_DATA_2021
+      - name: SALES_DATA_2022
+      - name: REF_CUSTOMER_LOOKUP
+      - name: REF_PRODUCT_LOOKUP
+      - name: REF_PRODUCT_CATEGORIES_LOOKUP
+      - name: REF_PRODUCT_SUBCATEGORIES_LOOKUP
+      - name: REF_TERRITORY_LOOKUP
+      - name: OPS_RETURNS_DATA

@@ -1,0 +1,148 @@
+version: 2
+models:
+  - name: stg_retail_raw__sales
+    description: "Unioned transactional records for sales from 2020-2022. Each row represents a line item in an order."
+    columns:
+      - name: order_id
+        description: "Unique transaction identifier."
+        tests:
+          - not_null
+      - name: order_date
+        description: "The date the order was placed."
+      - name: stock_date
+        description: "The date the item was pulled from stock."
+      - name: product_id
+        description: "Foreign key to the products dimension."
+      - name: customer_id
+        description: "Foreign key to the customers dimension."
+      - name: territory_id
+        description: "Foreign key to the territories dimension."
+      - name: order_line_item
+        description: "The sequential number of the item within the specific order."
+        tests:
+          - not_null
+      - name: order_quantity
+        description: "Number of units purchased in this line item."
+
+  - name: stg_retail_raw__customers
+    description: "Cleaned customer profile and demographic data."
+    columns:
+      - name: customer_id
+        description: "Primary key for customers."
+        tests:
+          - unique
+          - not_null
+      - name: name_prefix
+        description: "Customer salutation (e.g., MR., MRS.)."
+      - name: first_name
+        description: "Customer's first name."
+      - name: last_name
+        description: "Customer's last name."
+      - name: birth_date
+        description: "Customer's date of birth."
+      - name: marital_status
+        description: "Marital status (M for Married, S for Single)."
+      - name: gender
+        description: "Gender identifier (M or F)."
+      - name: email_address
+        description: "Customer email contact."
+      - name: annual_income
+        description: "Estimated annual income."
+      - name: total_children
+        description: "Total number of children in the household."
+      - name: education_level
+        description: "Highest education level attained."
+      - name: occupation
+        description: "Professional category."
+      - name: is_homeowner
+        description: "Boolean flag indicating home ownership (True/False)."
+
+  - name: stg_retail_raw__products
+    description: "Standardized product attributes and pricing."
+    columns:
+      - name: product_id
+        description: "Primary key for products."
+        tests:
+          - unique
+          - not_null
+      - name: subcategory_id
+        description: "Foreign key to product subcategories."
+      - name: product_sku
+        description: "Stock Keeping Unit code."
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "Descriptive name of the product."
+      - name: model_name
+        description: "Specific model designation."
+      - name: product_description
+        description: "Detailed description of product features."
+      - name: product_color
+        description: "Product color."
+      - name: product_size
+        description: "Product size."
+      - name: product_style
+        description: "Style identifier (e.g., U for Universal)."
+      - name: product_cost
+        description: "Manufacturing or acquisition cost per unit."
+      - name: product_price
+        description: "Retail selling price per unit."
+
+  - name: stg_retail_raw__categories
+    description: "High-level product classification names."
+    columns:
+      - name: category_id
+        description: "Primary key for categories."
+        tests:
+          - unique
+          - not_null
+      - name: category_name
+        description: "Name of the category (e.g., Bikes, Accessories)."
+
+  - name: stg_retail_raw__subcategories
+    description: "Mid-level classification mapping products to parent categories."
+    columns:
+      - name: subcategory_id
+        description: "Primary key for subcategories."
+        tests:
+          - unique
+          - not_null
+      - name: subcategory_name
+        description: "Name of the subcategory."
+      - name: category_id
+        description: "Foreign key to product categories."
+
+  - name: stg_retail_raw__territories
+    description: "Geographic mapping of sales regions."
+    columns:
+      - name: territory_id
+        description: "Primary key for territories."
+        tests:
+          - unique
+          - not_null
+      - name: region
+        description: "Specific regional name."
+      - name: country
+        description: "Country of operation."
+      - name: continent
+        description: "Continent of operation."
+
+  - name: stg_retail_raw__returns
+    description: >
+      Operational data regarding returned items. 
+      Note: A surrogate key (return_id) was created because the raw source lacked a unique identifier.
+    columns:
+      - name: return_id
+        description: "Surrogate Primary Key. MD5 hash of ReturnDate, TerritoryKey, and ProductKey."
+        tests:
+          - unique
+          - not_null
+      - name: return_date
+        description: "The date the return was processed."
+      - name: territory_id
+        description: "Foreign key to the territory where the return occurred."
+      - name: product_id
+        description: "Foreign key to the returned product."
+      - name: return_quantity
+        description: "Number of units returned."
