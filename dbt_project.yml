@@ -36,14 +36,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   retail_analytics_dbt:
-    # This applies to all models in your project
     +materialized: view 
     
-    # Specific routing for the staging folder
     staging:
       +schema: STAGING
       
-    # Specific routing for the marts folder
     marts:
       +schema: MARTS
       +materialized: table 
