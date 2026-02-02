@@ -81,4 +81,7 @@ With this clean Star Schema, organizations can now perform:
 ## LINEAGE GRAPH
 
 <img width="1832" height="823" alt="Lineage Graph" src="https://github.com/user-attachments/assets/b97816e4-2fa9-44fd-932a-a7626139ee99" />
+## DASHBOARD SCREENSHOT
+
+<img width="1520" height="832" alt="image" src="https://github.com/user-attachments/assets/a4c6d8f9-6466-4ad0-9d69-ee44cf0867cd" />
 
